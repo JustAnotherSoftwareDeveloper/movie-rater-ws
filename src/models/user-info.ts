@@ -1,6 +1,7 @@
 import { Identifiable } from "./identifiable";
 
-export interface UserInfo extends Identifiable {
+export interface UserInfo {
     username: string;
+    userId: number;
 
 }

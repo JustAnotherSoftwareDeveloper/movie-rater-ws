@@ -1,5 +1,5 @@
-import { Identifiable } from "./identifiable";
 
-export interface Category extends Identifiable {
-    name: string;
+export interface Category {
+    categoryName: string;
+    categoryId: number;
 }
