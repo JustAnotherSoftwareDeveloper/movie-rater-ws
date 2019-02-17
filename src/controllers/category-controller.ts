@@ -1,20 +1,26 @@
 import { Category } from './../models/category';
 import { CategoryEntity } from './../entity/category-entity';
-import { Controller } from './controller-interface';
 import { getRepository, Repository } from 'typeorm';
-import { Request, Response } from 'express';
-export class CategoryController implements Controller {
+import {JsonController, Get, Body, Post, Put} from 'routing-controllers';
+@JsonController()
+export class CategoryController {
     
     private repository = getRepository(CategoryEntity);
 
 
-    async getAll(request: Request, response: Response) {
-        const categories : Category[] = await this.repository.find();
-        response.send(categories);
+    @Get("/categories")
+    getAll() {
+        return this.repository.find();
     }
 
-    async addOrEdit(request: Request, response: Response) {
-        const category: Category = await this.repository.save(request.body);
-        response.send(category);
+
+    @Post("/category")
+    add(@Body() category: CategoryEntity) {
+        return this.repository.insert(category);
+    }
+
+    @Put("/category")
+    edit(@Body() category: CategoryEntity) {
+        return this.repository.save(category);
     }
 }

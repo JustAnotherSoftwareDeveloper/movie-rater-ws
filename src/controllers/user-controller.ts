@@ -1,21 +1,36 @@
-import { Controller } from './controller-interface';
+
 import { UserEntity } from './../entity/user-entity';
 import { getRepository } from "typeorm";
-import { Request } from "express";
-import { Response } from "express-serve-static-core";
-import { NextFunction } from "connect";
+import { JsonController, Get, Post, Body, Delete, Param, Put } from 'routing-controllers';
 
-export class UserController implements Controller {
 
+@JsonController()
+export class UserController {
     private repository = getRepository(UserEntity)
 
-    async getAll(request: Request, response: Response) {
-        const users : UserEntity[] = await this.repository.find();
-        response.send(users);
+    @Get("/users")
+    getAll() {
+        return this.repository.find();
     }
 
-    async addOrEdit(request: Request, response: Response) {
-        const user : UserEntity = await this.repository.save(request.body);
-        response.send(user);
+    @Get("/users/:id")
+    getByUserId(@Param("id") id: number) {
+        
+    }
+
+    @Post("/user")
+    add(@Body() user: UserEntity) {
+        return this.repository.insert(user);
+    }
+    
+
+    @Put("/user")
+    edit(@Body() user: UserEntity) {
+        return this.repository.save(user);
+    }
+    
+    @Delete("/user/:id")
+    deleteEntry(@Param("id") id: number) {    
+        return this.repository.delete(id);
     }
 }
