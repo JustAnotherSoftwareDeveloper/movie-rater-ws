@@ -13,11 +13,6 @@ export class UserController {
         return this.repository.find();
     }
 
-    @Get("/users/:id")
-    getByUserId(@Param("id") id: number) {
-        
-    }
-
     @Post("/user")
     add(@Body() user: UserEntity) {
         return this.repository.insert(user);
