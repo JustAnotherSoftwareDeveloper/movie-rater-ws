@@ -11,7 +11,12 @@ import { RatingController } from './controllers/rating-controller';
 createConnection().then(async connection => {
     const app = express();
     app.use(bodyParaser.json());
-
+    app.use(function(req, res, next) {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', '*');
+        res.header('Access-Control-Allow-Methods','*')
+        next();
+    });
 
     useExpressServer(app, {
         controllers: [CategoryController,MovieControler,RatingController,UserController]
