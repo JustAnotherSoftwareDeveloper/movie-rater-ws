@@ -1,6 +1,6 @@
 # Movie Rater Web Service
 
-This is a web service that stores movie ratings by categories for users. It is meant to be used in conjunction with the [movie rater web](https://github.com/JustAnotherSoftwareDeveloper/movie-rater-web) project. 
+This is a web service that stores movie ratings by categories for users. It is meant to be used in conjunction with the [movie rater web](https://github.com/JustAnotherSoftwareDeveloper/movie-rater-web) project. It is hard-coded to port 3000. I would obviously not do this on a production application
 
 
 # Technologies Used
