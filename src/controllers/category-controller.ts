@@ -1,4 +1,4 @@
-import { Category } from './../models/category';
+
 import { CategoryEntity } from './../entity/category-entity';
 import { getRepository, Repository } from 'typeorm';
 import {JsonController, Get, Body, Post, Put} from 'routing-controllers';
